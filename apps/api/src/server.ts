@@ -3,7 +3,7 @@
  * On Vercel, the api/index.ts handler is used instead.
  */
 
-import { buildApp } from "./app.js";
+import { buildApp } from "./app";
 
 const app = await buildApp();
 
