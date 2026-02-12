@@ -5,7 +5,7 @@
 
 import Fastify from "fastify";
 import cors from "@fastify/cors";
-import { txRoutes } from "./routes/tx";
+import { txRoutes } from "./routes/tx.js";
 
 export async function buildApp() {
   const app = Fastify({ logger: true });

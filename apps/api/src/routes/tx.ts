@@ -4,8 +4,8 @@
 
 import type { FastifyInstance } from "fastify";
 import { encrypt, decrypt } from "@repo/crypto";
-import { MASTER_KEY } from "../config";
-import { save, findById } from "../store";
+import { MASTER_KEY } from "../config.js";
+import { save, findById } from "../store.js";
 
 interface EncryptBody {
   partyId: string;
