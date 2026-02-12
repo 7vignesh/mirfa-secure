@@ -1,26 +1,12 @@
 /**
- * Fastify server entry point.
+ * Local dev server entry point.
+ * On Vercel, the api/index.ts handler is used instead.
  */
 
-import Fastify from "fastify";
-import cors from "@fastify/cors";
-import { txRoutes } from "./routes/tx.js";
+import { buildApp } from "./app.js";
 
-const app = Fastify({ logger: true });
+const app = await buildApp();
 
-// Register CORS so the Next.js frontend can call the API
-await app.register(cors, {
-  origin: true, // Allow all origins (simplest for this challenge)
-  methods: ["GET", "POST", "OPTIONS"],
-});
-
-// Register routes
-await app.register(txRoutes);
-
-// Health check
-app.get("/health", async () => ({ status: "ok" }));
-
-// Start
 const port = Number(process.env.PORT) || 3001;
 const host = process.env.HOST || "0.0.0.0";
 
