@@ -1,4 +1,4 @@
-# Mirfa — Secure Transaction Service (Intern Challenge)
+# Mirfa — Secure Transaction Service 
 
 A TurboRepo monorepo implementing a secure transaction service with Envelope Encryption (AES-256-GCM).
 
