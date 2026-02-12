@@ -1,4 +1,6 @@
-const API_BASE = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001";
+const raw = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:3001";
+// Strip trailing slash to avoid double-slash in URLs
+const API_BASE = raw.replace(/\/+$/, "");
 
 export async function encryptPayload(partyId: string, payload: unknown) {
   const res = await fetch(`${API_BASE}/tx/encrypt`, {
