@@ -10,7 +10,8 @@ const app = Fastify({ logger: true });
 
 // Register CORS so the Next.js frontend can call the API
 await app.register(cors, {
-  origin: true, // allow all origins in dev; restrict in production
+  origin: true, // Allow all origins (simplest for this challenge)
+  methods: ["GET", "POST", "OPTIONS"],
 });
 
 // Register routes
