@@ -1,5 +1,16 @@
 {
-  "buildCommand": "cd ../.. && pnpm turbo run build --filter=@repo/api",
+  "version": 2,
   "installCommand": "cd ../.. && pnpm install",
-  "rewrites": [{ "source": "/(.*)", "destination": "/api" }]
+  "builds": [
+    {
+      "src": "api/index.ts",
+      "use": "@vercel/node",
+      "config": {
+        "includeFiles": ["src/**", "../../packages/crypto/src/**"]
+      }
+    }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "/api/index.ts" }
+  ]
 }

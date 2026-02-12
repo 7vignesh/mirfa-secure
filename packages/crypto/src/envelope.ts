@@ -12,8 +12,8 @@
 
 import { randomBytes, createCipheriv, createDecipheriv } from "node:crypto";
 import { randomUUID } from "node:crypto";
-import type { TxSecureRecord } from "./types.js";
-import { validateRecord } from "./validate.js";
+import type { TxSecureRecord } from "./types";
+import { validateRecord } from "./validate";
 
 const ALG = "aes-256-gcm" as const;
 
