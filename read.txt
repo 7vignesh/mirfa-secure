@@ -1,0 +1,143 @@
+🧩 What you will build
+Create a TurboRepo monorepo containing:
+
+apps/web → Next.js frontend apps/api → Fastify backend packages/crypto → shared encryption logic
+
+The app should allow a user to:
+
+Enter a JSON payload + partyId
+Encrypt & store it
+Retrieve encrypted record
+Decrypt it back to original
+Think of this as a mini secure transaction service.
+
+🛠 Tech Requirements
+Please use:
+
+Node.js 20+
+pnpm
+TurboRepo
+Fastify (API)
+Next.js (Web)
+TypeScript
+Vercel deployment
+Project must run locally with:
+
+pnpm install pnpm dev
+
+📦 Functional Requirements
+Backend (Fastify)
+POST /tx/encrypt
+Input:
+
+{
+  "partyId": "party_123",
+  "payload": { "amount": 100, "currency": "AED" }
+}
+Output: encrypted record
+
+GET /tx/:id
+Return stored encrypted record (no decrypt)
+
+POST /tx/:id/decrypt
+Return original decrypted payload
+
+Storage can be:
+in-memory Map ✅ fine
+
+SQLite/Postgres ✅ bonus
+
+💻 Frontend (Next.js)
+Single page is enough:
+
+input: partyId
+
+textarea: JSON payload
+
+Encrypt & Save
+
+Fetch
+
+Decrypt
+
+show results
+
+Keep it simple and clean.
+
+🔐 Core Task — Encryption (Important)
+Implement Envelope Encryption using AES-256-GCM.
+
+Steps Generate random DEK (32 bytes)
+
+Encrypt payload using DEK (AES-256-GCM)
+
+Wrap DEK using Master Key (AES-256-GCM)
+
+Store everything
+
+Binary values should be stored as hex strings.
+
+📦 Data Model
+export type TxSecureRecord = { id: string partyId: string createdAt: string
+
+payload_nonce: string payload_ct: string payload_tag: string
+
+dek_wrap_nonce: string dek_wrapped: string dek_wrap_tag: string
+
+alg: "AES-256-GCM" mk_version: 1 }
+
+✅ Validation Rules
+Must reject if:
+
+nonce is not 12 bytes
+
+tag is not 16 bytes
+
+invalid hex
+
+ciphertext tampered
+
+tag tampered
+
+decryption fails
+
+🧪 Tests (optional) Write tests verifying:
+
+encrypt → decrypt works
+
+tampered ciphertext fails
+
+tampered tag fails
+
+wrong nonce length fails
+
+Minimum ~5 tests.
+
+🚀 Deployment (required)
+Deploy BOTH:
+
+Web → Vercel
+
+API → Vercel
+
+Provide working URLs.
+
+
+
+Can I use ChatGPT/Claude or any other model ?
+Yes. But you must understand your solution.
+
+Do I need a database?
+No. In-memory storage is fine.
+
+Can I use TypeScript?
+Recommended.
+
+Do I have to use Turbo?
+Yes.
+
+Do I have to use Fastify?
+Yes.
+
+Do I need fancy UI?
+No. Keep it simple.
